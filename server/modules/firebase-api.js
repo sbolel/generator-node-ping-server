@@ -6,8 +6,8 @@ var debug = require('debug')('firebase-admin'),
     Q = require('q'),
     Events = require('events'),
     emitter = new Events.EventEmitter(),
-    _FIREBASE_URL = process.env.SERVER_FIREBASE_URL,
-    _FIREBASE_TOKEN = process.env.SERVER_FIREBASE_SECRET,
+    _FIREBASE_URL = process.env.FIREBASE_URL,
+    _FIREBASE_TOKEN = process.env.FIREBASE_SECRET,
     _FIREBASE_REF = new Firebase(_FIREBASE_URL);
 
 var setup = {
@@ -20,13 +20,12 @@ module.exports = {
   firebase: {
     url: _FIREBASE_URL,
     ref: _FIREBASE_REF
-  }
+  },
+  init: initialize
 };
 
-initialize();
-
 function initialize() {
-  debug("STARTING FIREBASE");
+  debug("Connecting to Firebase: "+_FIREBASE_URL);
   var promises = [];
   promises.push(setup.admin());
   Q.all(promises).then(function(){
@@ -36,16 +35,15 @@ function initialize() {
 }
 
 function authenticateTrustedServer(){
-    var deferred = Q.defer();
-    _FIREBASE_REF.authWithCustomToken(_FIREBASE_TOKEN, function(error, authData) {
-      if (error) {
-        debug("Auth " + _FIREBASE_URL + " error:", error);
-        deferred.reject(error);
-      } else {
-        debug("Auth " + _FIREBASE_URL + " successful.");
-        deferred.resolve(authData);
-      }
-    });
-    return deferred.promise;
-  }
+  var deferred = Q.defer();
+  _FIREBASE_REF.authWithCustomToken(_FIREBASE_TOKEN, function(error, authData) {
+    if (error) {
+      debug("Auth " + _FIREBASE_URL + " error:", error);
+      deferred.reject(error);
+    } else {
+      debug("Auth " + _FIREBASE_URL + " successful.");
+      deferred.resolve(authData);
+    }
+  });
+  return deferred.promise;
 }
