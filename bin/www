@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 
 var debug = require('debug')('server'),
     app = require('./../server/app');
