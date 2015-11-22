@@ -1,1 +1,1 @@
-web: DEBUG=* npm start
+web: DEBUG=* nodemon start

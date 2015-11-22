@@ -2,14 +2,14 @@
 'use strict';
 
 var debug = require('debug')('app'),
-    express = require('express'),
-    _routes = require('./routes'),
-    _packageInfo = require('./../package.json');
+var express = require('express');
+var _routes = require('./routes');
+var _package = require('./../package.json');
 
 // setup express
 var app = express();
 app.use('/', _routes);
 
 // app exports
-app.packageInfo = _packageInfo;
+app.packageInfo = _package;
 module.exports = app;
