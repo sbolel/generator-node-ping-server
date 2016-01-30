@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-var debug = require('debug')('app'),
+var debug = require('debug')('app');
 var express = require('express');
 var _routes = require('./routes');
 var _package = require('./../package.json');

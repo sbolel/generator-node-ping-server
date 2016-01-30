@@ -1,1 +1,1 @@
-web: DEBUG=* nodemon start
+web: node bin/www
