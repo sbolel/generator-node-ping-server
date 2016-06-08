@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-var debug = require('debug')('server'),
-    app = require('./../server/app');
+const debug = require('debug');
+const app = require('../server');
 
 app.set('port', process.env.PORT || 4000);
 
-var server = app.listen(app.get('port'), function() {
+const server = app.listen(app.get('port'), () => {
   debug('Express server listening on port ' + server.address().port);
 });

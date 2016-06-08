@@ -1,4 +1,4 @@
-# Trusted Server
+# Ping Server
 
 _in progress_
 

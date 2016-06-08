@@ -1,18 +1,15 @@
-#!/usr/bin/env node
 'use strict';
 
-var debug = require('debug')('api');
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.use(function(req, res, next) {
+router.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-router.get('/ping', function(req, res){
-  debug('GET /ping');
+router.get('/ping', (req, res) => {
   res.json({status: 200});
 });
 
